@@ -176,9 +176,9 @@ window.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.code === 0) {
-                        alert('Note deleted successfully');
-                        window.location.href = '/';
+                    if (data.err === 0) {
+                        alert('删除成功, 可能会有延迟');
+                        window.location.href = '/list';
                     } else {
                         alert('Failed to delete note: ' + data.msg);
                     }

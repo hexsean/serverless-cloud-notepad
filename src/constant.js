@@ -1,5 +1,5 @@
 // static CDN
-export const CDN_PREFIX = '//gcore.jsdelivr.net/gh/s0urcelab/serverless-cloud-notepad@master/static'
+export const CDN_PREFIX = '//gcore.jsdelivr.net/gh/hxtonge/serverless-cloud-notepad@19c16b218881978bb61fe258a23a360c1aba63fe/static'
 
 // server side salt
 export const SALT = SCN_SALT
@@ -17,6 +17,8 @@ export const SUPPORTED_LANG = {
         emptyPH: 'There are many like it, but this one is mine...',
         tipEncrypt: 'This Note has been encrypted, please enter password!',
         tip404: '404, Nothing here',
+        save: 'Save',
+        delete: 'Delete',
     },
     'zh': {
         setPW: '设置密码',
@@ -27,5 +29,7 @@ export const SUPPORTED_LANG = {
         emptyPH: '看来你是第一个到这儿的人，写点什么吧...',
         tipEncrypt: '这是一篇加密笔记，你必须先输入密码',
         tip404: '404，你要找的东西并不存在',
+        save: '保存笔记',
+        delete: '删除笔记',
     }
 }

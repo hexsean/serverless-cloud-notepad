@@ -252,6 +252,29 @@ router.post('/:path', async request => {
     return returnJSON(10001, 'KV insert fail!')
 })
 
+router.delete('/:path/delete', async request => {
+    const { path } = request.params
+    const { value, metadata } = await queryNote(path)
+    
+    const cookie = Cookies.parse(request.headers.get('Cookie') || '')
+    const valid = await checkAuth(cookie, path)
+
+    if (!metadata.pw || valid) {
+        try {
+            await NOTES.delete(path)
+            // 如果笔记有分享链接，也需要删除
+            const md5 = await MD5(path)
+            await SHARE.delete(md5)
+            return returnJSON(0, 'Note deleted successfully')
+        } catch (error) {
+            console.error(error)
+            return returnJSON(10005, 'Failed to delete note')
+        }
+    } else {
+        return returnJSON(10002, 'Authentication failed')
+    }
+})
+
 router.all('*', (request) => {
     const lang = getI18n(request)
     returnPage('Page404', { lang, title: '404' })

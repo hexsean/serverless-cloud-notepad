@@ -16,6 +16,8 @@ const FOOTER = ({ lang, isEdit, updateAt, pw, mode, share }) => `
         ${isEdit ? `
             <div class="opt">
                 <button class="opt-button opt-pw">${pw ? SUPPORTED_LANG[lang].changePW : SUPPORTED_LANG[lang].setPW}</button>
+                <button class="opt-button opt-save">${SUPPORTED_LANG[lang].save}</button>
+                <button class="opt-button opt-delete">${SUPPORTED_LANG[lang].delete}</button>
                 ${SWITCHER('Markdown', mode === 'md', 'opt-mode')}
                 ${SWITCHER(SUPPORTED_LANG[lang].share, share, 'opt-share')}
             </div>
