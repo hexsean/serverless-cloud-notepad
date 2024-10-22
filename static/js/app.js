@@ -170,7 +170,7 @@ window.addEventListener('DOMContentLoaded', function () {
         $optDelete.onclick = function () {
             if (confirm('Are you sure you want to delete this note?')) {
                 const path = window.location.pathname
-                fetch(`/${path}`, {
+                fetch(`${path}/delete`, {
                     method: 'DELETE',
                     credentials: 'same-origin'
                 })
