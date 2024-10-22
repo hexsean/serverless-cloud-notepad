@@ -14,7 +14,7 @@ const SUPPORTED_LANG = {
         err: '出错了',
         pepw: '请输入密码',
         pwcnbe: '密码不能为空！',
-        enpw: '输入新密码1122（留空可清除当前密码）',
+        enpw: '输入新密码（留空可清除当前密码）',
         pwss: '密码设置成功！',
         pwrs: '密码清除成功！',
         cpys: '已复制',
@@ -161,15 +161,32 @@ window.addEventListener('DOMContentLoaded', function () {
 
     if ($potSave) {
         $potSave.onclick = function () {
-                        const passwd = window.prompt(getI18n('enpw'))
-            if (passwd == null) return;
+            console.log('save')
             window.location.href="https://node.shunger.store/list"
         }
     }
 
     if ($optDelete) {
         $optDelete.onclick = function () {
-            console.log('delete')
+            if (confirm('Are you sure you want to delete this note?')) {
+                fetch(`/${path}`, {
+                    method: 'DELETE',
+                    credentials: 'same-origin'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 0) {
+                        alert('Note deleted successfully');
+                        window.location.href = '/';
+                    } else {
+                        alert('Failed to delete note: ' + data.msg);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the note');
+                });
+            }
         }
     }
 
