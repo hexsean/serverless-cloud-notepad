@@ -14,7 +14,7 @@ const SUPPORTED_LANG = {
         err: '出错了',
         pepw: '请输入密码',
         pwcnbe: '密码不能为空！',
-        enpw: '输入新密码（留空可清除当前密码）',
+        enpw: '输入新密码1122（留空可清除当前密码）',
         pwss: '密码设置成功！',
         pwrs: '密码清除成功！',
         cpys: '已复制',
@@ -90,6 +90,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const $textarea = document.querySelector('#contents')
     const $loading = document.querySelector('#loading')
     const $pwBtn = document.querySelector('.opt-pw')
+    const $potSave = document.querySelector('.opt-save')
+    const $optDelete = document.querySelector('.opt-delete')
     const $modeBtn = document.querySelector('.opt-mode > input')
     const $shareBtn = document.querySelector('.opt-share > input')
     const $previewPlain = document.querySelector('#preview-plain')
@@ -154,6 +156,20 @@ window.addEventListener('DOMContentLoaded', function () {
                     alert(passwd ? getI18n('pwss') : getI18n('pwrs'))
                 })
                 .catch(err => errHandle(err))
+        }
+    }
+
+    if ($potSave) {
+        $potSave.onclick = function () {
+                        const passwd = window.prompt(getI18n('enpw'))
+            if (passwd == null) return;
+            window.location.href="https://node.shunger.store/list"
+        }
+    }
+
+    if ($optDelete) {
+        $optDelete.onclick = function () {
+            console.log('delete')
         }
     }
 
