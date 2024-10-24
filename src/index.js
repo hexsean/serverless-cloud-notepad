@@ -16,7 +16,7 @@ router.get('/', ({ url }) => {
 
 // 处理 /list 路由
 router.get('/list', async () => {
-    const keys = await NOTES.list() // 获取所有笔记的键
+    const keys = await NOTES.list({ type: "consistent" });// 获取所有笔记的键
 
     // 生成表格行，每行显示每个键的所有字段信息
     const rows = keys.keys.map(key => `
